@@ -1,0 +1,106 @@
+<!-- =============================================== -->
+<%- include('header') %>
+    <%- include('aside') %>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    <%= title %>
+                </h1>
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="box">
+
+                    <div class="box-body">
+
+                        <form action="" method="GET" class="form-inline" role="form">
+
+                            <div class="form-group">
+                                <input class="form-control" name="name" placeholder="Input name">
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <a type="submit" href="/them-danh-muc" class="btn btn-success pull-right"><i
+                                    class="fa fa-plus"></i> Thêm mới</a>
+                        </form>
+                        <hr>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% data.map((item, index)=>{ %>
+                                    <tr>
+                                        <td scope="row">
+                                            <%= index + 1 %>
+                                        </td>
+                                        <td scope="row">
+                                            <%= item.name %>
+                                        </td>
+                                        <td scope="row">
+                                            <%= item.status==0 ? 'Tạm ẩn' : 'Hiển thị' %>
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="/sua-danh-muc/<%= item.id %>" class="btn btn-sm btn-info"><i
+                                                    class="fa fa-edit"></i> Sửa</a>
+                                            <a href="/xoa-danh-muc/<%= item.id %>" class="btn btn-sm btn-danger"><i
+                                                    class="fa fa-trash"></i> Xóa</a>
+                                        </td>
+                                    </tr>
+
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+
+                        <ul class="pagination">
+                            <li><a href="?page=<%= _page > 2 ? Number(_page) - 1 : 1 %>">&laquo;</a></li>
+
+                            <% for(i=1; i <=totalPage; i++){ %>
+
+                                <% if(_name){ %>
+
+                                    <li class="<%= _page == i ? 'active' : '' %>"><a
+                                            href="?page=<%= i %>& name=<%= _name%>">
+                                            <%= i %>
+                                        </a></li>
+                                    <%} else {%>
+                                        <li class="<%= _page == i ? 'active' : '' %>"><a href="?page=<%= i %>">
+                                                <%= i %>
+                                            </a></li>
+                                        <%}%>
+
+
+                                            <%} %>
+
+                                                <li><a
+                                                        href="?page=<%= _page < totalPage ? Number(_page) + 1 : totalPage %>">&raquo;</a>
+                                                </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <%- include('footer') %>
