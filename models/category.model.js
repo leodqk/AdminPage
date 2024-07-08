@@ -12,6 +12,15 @@ const getAllCategories = async (_name, _start, _limit) => {
   return await query(sql);
 };
 
+const dataCombobox = (myFun) => {
+  connect.query(
+    "SELECT id, name FROM category ORDER BY name ASC",
+    function (err, data) {
+      myFun(err, data);
+    }
+  );
+};
+
 const getTotalCount = async (_name) => {
   let sql = "SELECT count(*) as total FROM category";
   if (_name) {
@@ -49,4 +58,5 @@ module.exports = {
   createCategory,
   getCategoryById,
   updateCategory,
+  dataCombobox,
 };

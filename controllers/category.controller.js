@@ -41,7 +41,7 @@ exports.edit = async (req, res) => {
   const id = req.params.id;
   const category = await Category.getCategoryById(id);
   res.render("category-edit", {
-    item: category,
+    items: category,
   });
 };
 

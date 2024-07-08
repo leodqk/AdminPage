@@ -25,6 +25,8 @@ const homeRouter = require("./routes/home.router");
 homeRouter(app);
 const categoryRouter = require("./routes/category.router");
 categoryRouter(app);
+const productRouter = require("./routes/product.router");
+productRouter(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
